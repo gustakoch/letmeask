@@ -1,13 +1,16 @@
 import React, { useContext, FormEvent } from 'react'
 import { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
 
 import illustrationImg from '../assets/images/illustration.svg'
 import logoImg from '../assets/images/logo.svg'
 
 import { Button } from '../components/Button'
 import { AuthContext } from '../contexts/AuthContext'
+
 import { database } from '../services/firebase'
+import { toastErrorAlert } from '../utils/toastAlerts'
 
 import '../styles/home.scss'
 
@@ -20,7 +23,7 @@ export function NewRoom() {
         event.preventDefault()
 
         if (newRoom.trim() === '') {
-            return
+            return toastErrorAlert('O nome da sala deve ser informado.')
         }
 
         const roomRef = database.ref('rooms')
@@ -34,6 +37,7 @@ export function NewRoom() {
 
     return (
         <div id="page-home">
+            <Toaster />
             <aside>
                 <img src={illustrationImg} alt="Illustration" />
                 <strong>Crie salas de Q&amp;A ao-vivo</strong>
