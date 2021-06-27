@@ -1,5 +1,4 @@
 .button {
-    margin-top: 3rem;
     height: 48px;
     border-radius: 8px;
     font-weight: 500;
@@ -13,7 +12,7 @@
 
     border: 0;
     cursor: pointer;
-    transition: filter 0.2s ease;
+    transition: all 0.3s ease;
 
     img {
         margin-right: 1rem;
@@ -26,5 +25,16 @@
     &:disabled {
         opacity: 0.6;
         cursor: not-allowed;
+    }
+
+    &.outlined {
+        background-color: transparent;
+        border: 1px solid #835afd;
+        color: #835afd;
+    }
+
+    &.outlined:hover {
+        background-color: #835afd;
+        color: #fff;
     }
 }

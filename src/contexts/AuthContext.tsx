@@ -1,6 +1,8 @@
 import { createContext, ReactNode, useEffect, useState } from "react"
 import { auth, firebase } from "../services/firebase"
 
+import { toastErrorAlert } from '../utils/toastAlerts'
+
 type User = {
     id: string,
     name: string,
@@ -27,7 +29,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
                 const { displayName, photoURL, uid } = user
 
                 if (!photoURL || !displayName) {
-                    throw new Error('Missing information from Google Account')
+                    return toastErrorAlert('Faltam informações da sua conta do Google')
                 }
 
                 setUser({
@@ -38,9 +40,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
             }
         })
 
-        return () => {
-            unsubscribe()
-        }
+        return () => unsubscribe()
     }, [])
 
     async function signInWithGoogle() {
@@ -51,7 +51,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
             const { displayName, photoURL, uid } = result.user
 
             if (!photoURL || !displayName) {
-                throw new Error('Missing information from Google Account')
+                return toastErrorAlert('Faltam informações da sua conta do Google')
             }
 
             setUser({
