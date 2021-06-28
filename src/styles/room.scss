@@ -109,5 +109,29 @@
         .question-list {
             margin: 32px 0;
         }
+
+        .empty-questions {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 5rem;
+
+            > img {
+                max-height: 150px;
+            }
+
+            strong {
+                margin: 2rem 0 1rem 0;
+                color: #29292e;
+            }
+
+            p {
+                color: #737380;
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+        }
     }
 }
